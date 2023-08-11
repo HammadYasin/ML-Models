@@ -12,7 +12,6 @@ def create_item():
     request_data = request.json  # Get JSON data from the request
     import pickle
     import pandas as pd
-    import json
     filename = 'Class_heart.sav'
     model = pickle.load(open(filename, 'rb'))
     data = pd.DataFrame([request_data])
@@ -23,4 +22,4 @@ def create_item():
     result = class_names[output[0]]
     return result
 if __name__ == '__main__':
-    app.run(host='192.168.0.105',debug=True)
+    app.run(debug=True)

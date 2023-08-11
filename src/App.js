@@ -26,10 +26,15 @@ function App()
     const [caa, setCaa] = useState('');
     const [thall, setThall] = useState('');
     const [load, setLoad] = useState(false);
-    const [load1, setLoad1] = useState(false);
+    const [temp,setTemp] = useState('');
     const checkVals = async () =>{
         if(age !== '' &&  gender!== ''&& cp !==''&& trtbps !==''&& chol !==''&& fbs !==''&& restecg !==''&& thalachh !==''&& exng !==''&& oldpeak !==''&& slp !==''&& caa !==''&& thall !=='')
         {
+            setdata(null);
+            setLoad(true);
+            setTimeout(() => {
+              setLoad(false);
+            }, 1000)
             onPressData()
         }
         else
@@ -38,13 +43,6 @@ function App()
         }
     }
     const onPressData = async () => {
-        setLoad(true);
-        setTimeout(() => {
-          setLoad(false);
-        }, 1000)
-        setTimeout(() => {
-          setLoad1(true);
-        }, 3000)
         fetch("/items", {
             method: 'POST',
             headers: {
@@ -69,8 +67,9 @@ function App()
           })
         .then((res) =>
             res.text().then((data) => {
-                // Setting a data from api
-                setdata(data);
+                setTimeout(() => {
+                    setdata(data);
+                  }, 1000)
             })
         );
         }
@@ -238,12 +237,17 @@ function App()
                 </div>
         </div>
         <div style={{display:'flex',flexDirection:'column'}}>
-        <Lottie speed={5}options={defaultOptions} height={400} width={400}/>
+        <Lottie speed={3}options={defaultOptions} height={400} width={400}/>
         {load && <Lottie speed={1}options={defaultOptions1} height={50} width={50}/>}
         {data === "No Heart Attack" ? (
             <text style={{fontSize:50,color:'green'}}>{data}</text>
              ) : (
-                <text style={{fontSize:50,color:'red'}}>{data}</text>
+                null
+                 )}
+        {data === "Heart Attack" ? (
+            <text style={{fontSize:50,color:'red'}}>{data}</text>
+             ) : (
+                null
                  )}
         </div>
         </div>
