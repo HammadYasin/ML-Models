@@ -8,6 +8,7 @@ import { IoHeartCircleOutline,IoSearchOutline } from "react-icons/io5";
 import Lottie from 'react-lottie';
 import heart from './heart_ani';
 import heart1 from './heart1';
+import { Alert,Dialog } from '@mui/material';
 
 function App() 
 {
@@ -27,6 +28,14 @@ function App()
     const [thall, setThall] = useState('');
     const [load, setLoad] = useState(false);
     const [temp,setTemp] = useState('');
+    const [isDialogOpen, setDialogOpen] = useState(false);
+    const [isDialogOpen1, setDialogOpen1] = useState(false);
+    const closeDialog = () => {
+        setDialogOpen(false);
+    };
+    const closeDialog1 = () => {
+        setDialogOpen1(false);
+    };
     const checkVals = async () =>{
         if(age !== '' &&  gender!== ''&& cp !==''&& trtbps !==''&& chol !==''&& fbs !==''&& restecg !==''&& thalachh !==''&& exng !==''&& oldpeak !==''&& slp !==''&& caa !==''&& thall !=='')
         {
@@ -39,7 +48,7 @@ function App()
         }
         else
         {
-            alert('Input values are empty !');
+            setDialogOpen1(true);
         }
     }
     const onPressData = async () => {
@@ -74,7 +83,7 @@ function App()
         );
         }
     const ClearInputs = async () => {
-        alert("All Entries Cleared !");
+        setDialogOpen(true);
         setAge('');
         setGen('');
         setCp('');
@@ -256,6 +265,28 @@ function App()
             <footer style={{ backgroundColor: '#2F6398', height: 30, textAlign: 'center' }}>
                 <text style={{ fontSize: 20, color: 'white' }}>© ASCEND Healthcare Solutions 2023.</text>
             </footer>
+            {isDialogOpen && (
+                <div className="overlay">
+                    <div className="dialog">
+                        <div className="dialog-content">
+                            <h2>Inputs are empty</h2>
+                            <p>All Entries Cleared.</p>
+                            <button onClick={closeDialog}>Close</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {isDialogOpen1 && (
+                <div className="overlay">
+                    <div className="dialog">
+                        <div className="dialog-content">
+                            <h2>Error !</h2>
+                            <p>Input values are empty.</p>
+                            <button onClick={closeDialog1}>Close</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
