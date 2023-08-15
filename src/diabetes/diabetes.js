@@ -93,11 +93,12 @@ function diabetes()
     console.log(data)
     const myStyle={
         backgroundImage: `url(${background})`,
-        height:700,
+        height:'auto',
         // fontSize:'50px',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         marginTop:35,
+        marginBottom:45,
         display:'flex',
         flexDirection:'column',
         alignItems:'center',
@@ -119,52 +120,53 @@ function diabetes()
           preserveAspectRatio: "xMidYMid slice"
         }
       };
+      const responsiveTextStyles = {
+        fontSize: '16px', // Default font size
+        '@media (max-width: 768px)': {
+          fontSize: '14px', // Adjust font size for smaller screens
+        },
+        '@media (max-width: 480px)': {
+          fontSize: '12px', // Adjust font size for even smaller screens
+        },
+      };
     return (
         <div className="App">
             <header style={{ backgroundColor: '#2F6398', height: 70, color: '#FFFFFF', fontSize: 50, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <IoMedkitOutline />
-                    <text style={{ marginLeft: 20 }}>Diabetes Model</text>
+                    <text style={{fontSize:'3vh'}}>Diabetes Model</text>
                 </div>
                 <img src={background1} alt="Logo" style={{ height: 60, width: 60, borderRadius: 8 }} />
             </header>
-            <header style={{ backgroundColor: 'grey', marginTop: 20, display: 'flex', height: 40 }}>
-                <text onClick={navigateHeart} style={{cursor:'pointer', color: 'white', fontSize: 30, height: 40, paddingInline: 10, marginLeft: 50 }}>Heart</text>
-                <text style={{ cursor:'pointer',color: 'white', fontSize: 30, paddingInline: 20 , fontWeight: 'bold', backgroundColor: '#1F3B57'}}>Diabetes</text>
-                <IoSearchOutline style={{ color: 'white', fontSize: 40, backgroundColor: '#1F3B57', marginLeft: 'auto', marginRight: 20 }} />
+            <header style={{ backgroundColor: 'grey', marginTop: 20,marginBottom:20, display: 'flex', height: 30 }}>
+                <text onClick={navigateHeart} style={{cursor:'pointer', color: 'white', fontSize: 20, height: 30, paddingInline: 10, marginLeft: 50 }}>Heart</text>
+                <text style={{ cursor:'pointer',color: 'white', fontSize: 20, paddingInline: 20 , fontWeight: 'bold', backgroundColor: '#1F3B57'}}>Diabetes</text>
+                <IoSearchOutline style={{ color: 'white', fontSize: 30, backgroundColor: '#1F3B57', marginLeft: 'auto', marginRight: 20 }} />
             </header>
             <div style={myStyle}>
-    <div style={{height:580,width:1500,backgroundColor:'#FFFFFF',borderWidth:10,borderRadius:20,alignSelf:'center',boxShadow: '1px 2px 9px #000000',padding: '0 10px' }}>
-        <text style={{fontSize:20}}>Kindly input the necessary information to initiate the diabetes prediction process.</text>
-        <div style={{display:'flex',flexDirection:'row',margin:30,width:'100vh'}}>
-        <div style={{display:'flex',flexDirection:'row'}}>
-            <div style={{display:'flex',flexDirection:'column',marginTop:40,marginLeft:30,width:500}}>
+    <div style={{height:'auto',backgroundColor:'#FFFFFF',borderWidth:10,borderRadius:20,alignSelf:'center',boxShadow: '1px 2px 9px #000000',padding: '0 10px',width:'auto',flexWrap:'wrap',marginTop:25,marginBottom:35,maxWidth:'100%',minWidth:'50%',marginLeft:25,marginRight:25}}>
+        <text style={responsiveTextStyles}>Kindly input the necessary information to initiate the diabetes prediction process.</text>
+        <div className="container" style={{display:'flex',flexDirection:'row',width:'100%',marginTop:20,justifyContent:'space-evenly',alignItems:'center',marginLeft:18}}>
+            <div className="component"style={{display:'flex',flexDirection:'column',width:'100%',justifyContent:'space-evenly',height:'100%',minWidth:300}}>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center'}}>  
-                    <text style={{marginRight:7,fontSize:20}}>Age:</text>
-                <input min="0" type='number' pattern="[0-9]*" value={age} onChange={(event) => setAge(event.target.value)} className="e-input"  placeholder="Enter Age" style={{fontSize:20,width:'100vh'}} />
+                    <text style={{marginRight:7,fontSize:'2vh'}}>Age:</text>
+                <input min="0" type='number' pattern="[0-9]*" value={age} onChange={(event) => setAge(event.target.value)} className="e-input"  placeholder="Enter Age" style={{fontSize:'1%vw',width:'200%'}} />
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
-                    <text style={{marginRight:7,fontSize:20}}>BMI:</text>
-                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={bmi} onChange={(event) => setBmi(event.target.value)} placeholder="Enter BMI in kg/m²" style={{fontSize:20,width:'100vh'}} />
+                    <text style={{marginRight:7,fontSize:'2vh'}}>BMI:</text>
+                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={bmi} onChange={(event) => setBmi(event.target.value)} placeholder="Enter BMI in kg/m²" style={{fontSize:'1%vw',width:'100%'}} />
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
-                    <text style={{marginRight:7,fontSize:20}}>HbA1c:</text>
-                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={hba} onChange={(event) => setHba(event.target.value)} placeholder="Enter hbA1c in mmol/mol" style={{fontSize:20,width:'100vh'}} />
+                    <text  style={{marginRight:7,fontSize:'2vh'}}>HbA1c:</text>
+                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={hba} onChange={(event) => setHba(event.target.value)} placeholder="Enter hbA1c in mmol/mol" style={{fontSize:'1%vw',width:'100%'}} />
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
-                    <text style={{marginRight:7,fontSize:20}}>Glucose:</text>
-                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={glucose} onChange={(event) => setGlu(event.target.value)} placeholder="Enter Blood Glucose Level" style={{fontSize:20,width:'100vh'}} />
+                    <text style={{marginRight:7,fontSize:'2vh'}}>Glucose:</text>
+                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={glucose} onChange={(event) => setGlu(event.target.value)} placeholder="Enter Blood Glucose Level" style={{fontSize:'1%vw',width:'100%'}} />
                 </div>
-                <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:85,justifyContent:'space-between'}}>  
-                    <button onClick={checkVals} style={{height:80,width:220,borderRadius:20,fontSize:30,color:'white',backgroundColor:'#2F6398',boxShadow: '1px 1px 2px #000000',cursor:'pointer',borderWidth:5,borderColor:'#2F6398'}}>Submit</button>
-                    <button onClick={ClearInputs} style={{height:80,width:220,borderRadius:20,fontSize:30,color:'white',backgroundColor:'#394857',boxShadow: '1px 1px 2px #000000',cursor:'pointer',borderWidth:5,borderColor:'#394857'}}>Clear Inputs</button>
-                </div>
-            </div>
-        </div>
-        <div style={{display:'flex',flexDirection:'column',marginTop:20,marginLeft:30,width:500}}>
-        <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
-                    <text style={{marginRight:7,fontSize:20}}>Gender:</text>
-                    <select value={gender} onChange={(event) => setGen(event.target.value)} style={{fontSize:20,width:'100vh'}}>
+                <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
+                    <text style={{marginRight:7,fontSize:'2vh'}}>Gender:</text>
+                    <select value={gender} onChange={(event) => setGen(event.target.value)} style={{fontSize:'1%vw',width:'100%'}}>
                     <option value=''>Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -172,16 +174,16 @@ function diabetes()
                     </select>  
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
-                    <text style={{marginRight:7,fontSize:20}}>Hypertension:</text>
-                    <select value={hyper} onChange={(event) => setHyp(event.target.value)} style={{fontSize:20,width:'100vh'}}>
+                    <text style={{marginRight:7,fontSize:'2vh'}}>Hypertension:</text>
+                    <select value={hyper} onChange={(event) => setHyp(event.target.value)} style={{fontSize:'1%vw',width:'100%'}}>
                     <option value=''>Select Hypertension</option>
                     <option value="0">No</option>
                     <option value="1">Yes</option>
                     </select>  
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>
-                    <text style={{marginRight:7,fontSize:20}}>Smoking History:</text>
-                    <select value={smoking} onChange={(event) => setSmo(event.target.value)} style={{fontSize:20,width:'100vh',height:60}}>
+                    <text style={{marginRight:7,fontSize:'2vh'}}>Smoking History:</text>
+                    <select value={smoking} onChange={(event) => setSmo(event.target.value)} style={{fontSize:'1%vw',width:'100%',height:60}}>
                     <option value=''>Select Smoking History</option>
                     <option value="current">Current</option>
                     <option value="ever">Ever</option>
@@ -192,33 +194,39 @@ function diabetes()
                     </select>  
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
-                    <text style={{marginRight:7,fontSize:20}}>Heart Disease:</text>
-                    <select value={hea} onChange={(event) => setHea(event.target.value)} style={{fontSize:20,width:'100vh',height:55}}>
+                    <text style={{marginRight:7,fontSize:'2vh'}}>Heart Disease:</text>
+                    <select value={hea} onChange={(event) => setHea(event.target.value)} style={{fontSize:'1%vw',width:'100%',height:55}}>
                     <option value=''>Select Heart Disease</option>
                     <option value="0">No</option>
                     <option value="1">Yes</option>
                     </select>  
                 </div>
-        </div>
+            </div>
         <div style={{display:'flex',flexDirection:'column'}}>
-        <Lottie speed={3}options={defaultOptions} height={400} width={400}/>
+        <Lottie speed={3}options={defaultOptions} style={{height:'auto',width:'350',maxWidth:350}}/>
+        <div style={{height:80}}>
         {load && <Lottie speed={1}options={defaultOptions1} height={50} width={50}/>}
         {data === "No Diabetes" ? (
-            <text style={{fontSize:50,color:'green'}}>{data}</text>
+            <text style={{fontSize:40,color:'green'}}>{data}</text>
              ) : (
                 null
                  )}
         {data === "Diabetes" ? (
-            <text style={{fontSize:50,color:'red'}}>{data}</text>
+            <text style={{fontSize:40,color:'red'}}>{data}</text>
              ) : (
                 null
                  )}
+        </div>
+                <div style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>  
+                    <button onClick={checkVals} style={{height:'auto',width:'auto',borderRadius:20,fontSize:'3vh',color:'white',backgroundColor:'#2F6398',boxShadow: '1px 1px 2px #000000',cursor:'pointer',borderWidth:5,borderColor:'#2F6398',marginBottom:25}}>Submit</button>
+                    <button onClick={ClearInputs} style={{height:'auto',width:'auto',borderRadius:20,fontSize:'2.7vh',color:'white',backgroundColor:'#394857',boxShadow: '1px 1px 2px #000000',cursor:'pointer',borderWidth:5,borderColor:'#394857',marginBottom:25}}>Clear Inputs</button>
+                </div>
         </div>
         </div>
     </div>
             </div>
             <footer style={{ backgroundColor: '#2F6398', height: 30, textAlign: 'center' }}>
-                <text style={{ fontSize: 20, color: 'white' }}>© ASCEND Healthcare Solutions 2023.</text>
+                <text style={{ fontSize: 20, color: 'white' }}>© ASCEND Solutions 2023.</text>
             </footer>
             {isDialogOpen && (
                 <div className="overlay">
