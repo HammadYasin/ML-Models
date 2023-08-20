@@ -14,7 +14,7 @@ def heart():
     filename = 'Class_heart.sav'
     model = pickle.load(open(filename, 'rb'))
     data = pd.DataFrame([request_data])
-    #excel_filename = 'output.xlsx'
+    #excel_filename = 'output_heart.xlsx'
     #data.to_excel(excel_filename, index=False)
     class_names = ['No Heart Attack', 'Heart Attack']
     output = model.predict(data)
@@ -31,7 +31,7 @@ def diabetes():
     filename = 'diabetes_xgb_model.sav'
     model = pickle.load(open(filename, 'rb'))
     data = pd.DataFrame([request_data])
-    #excel_filename = 'output.xlsx'
+    #excel_filename = 'output_diabetes.xlsx'
     #data.to_excel(excel_filename, index=False)
     class_names = ['No Diabetes', 'Diabetes']
     output = model.predict(data)

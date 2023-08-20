@@ -25,11 +25,27 @@ function diabetes()
     const [load, setLoad] = useState(false);
     const [isDialogOpen, setDialogOpen] = useState(false);
     const [isDialogOpen1, setDialogOpen1] = useState(false);
+    const [isDialogAge, setDialogAge] = useState(false);
+    const [isDialogBMI, setDialogBMI] = useState(false);
+    const [isDialogGlu, setDialogGlu] = useState(false);
+    const [isDialogHba, setDialogHba] = useState(false);
     const closeDialog = () => {
         setDialogOpen(false);
     };
     const closeDialog1 = () => {
         setDialogOpen1(false);
+    };
+    const closeAge = () => {
+        setDialogAge(false);
+    };
+    const closeBMI = () => {
+        setDialogBMI(false);
+    };
+    const closeGlu = () => {
+        setDialogGlu(false);
+    };
+    const closeHba = () => {
+        setDialogHba(false);
     };
     const navigateHeart = () => {
         navigate('/heart');
@@ -37,12 +53,40 @@ function diabetes()
     const checkVals = async () =>{
         if(age !== '' &&  gender!== ''&& bmi !==''&& hyper !==''&& hba !==''&& smoking !==''&& glucose !==''&& hea !=='')
         {
-            setdata(null);
-            setLoad(true);
-            setTimeout(() => {
-              setLoad(false);
-            }, 1000)
-            onPressData()
+            if(age>9&&age<101)
+            {
+                if(bmi>9.00&&bmi<120.00)
+                {
+                    if(hba>2.9&&hba<9.6)
+                    {
+                        if(glucose>59&&glucose<376)
+                        {
+                            setdata(null);
+                            setLoad(true);
+                            setTimeout(() => {
+                              setLoad(false);
+                            }, 1000)
+                            onPressData()
+                        }
+                        else
+                        {
+                            setDialogGlu(true)
+                        }
+                    }
+                    else
+                    {
+                        setDialogHba(true)
+                    }
+                }
+                else
+                {
+                    setDialogBMI(true)
+                }
+            }
+            else
+            {
+                setDialogAge(true)
+            }
         }
         else
         {
@@ -121,6 +165,7 @@ function diabetes()
         }
       };
       const responsiveTextStyles = {
+        fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
         fontSize: '16px', // Default font size
         '@media (max-width: 768px)': {
           fontSize: '14px', // Adjust font size for smaller screens
@@ -134,13 +179,13 @@ function diabetes()
             <header style={{ backgroundColor: '#2F6398', height: 70, color: '#FFFFFF', fontSize: 50, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <IoMedkitOutline />
-                    <text style={{fontSize:'3vh'}}>Diabetes Model</text>
+                    <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'3vh'}}>Diabetes Model</text>
                 </div>
                 <img src={background1} alt="Logo" style={{ height: 60, width: 60, borderRadius: 8 }} />
             </header>
-            <header style={{ backgroundColor: 'grey', marginTop: 20,marginBottom:20, display: 'flex', height: 30 }}>
-                <text onClick={navigateHeart} style={{cursor:'pointer', color: 'white', fontSize: 20, height: 30, paddingInline: 10, marginLeft: 50 }}>Heart</text>
-                <text style={{ cursor:'pointer',color: 'white', fontSize: 20, paddingInline: 20 , fontWeight: 'bold', backgroundColor: '#1F3B57'}}>Diabetes</text>
+            <header style={{ backgroundColor: 'grey', marginTop: 20,marginBottom:20, display: 'flex', height: 30 ,flexDirection:'row'}}>
+                <text onClick={navigateHeart} style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',cursor:'pointer', color: 'white', fontSize: 20, height: 30, paddingInline: 10, marginLeft: 50,marginTop:3 }}>Heart</text>
+                <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', cursor:'pointer',color: 'white', fontSize: 20, paddingInline: 20 , fontWeight: 'bold', backgroundColor: '#1F3B57'}}>Diabetes</text>
                 <IoSearchOutline style={{ color: 'white', fontSize: 30, backgroundColor: '#1F3B57', marginLeft: 'auto', marginRight: 20 }} />
             </header>
             <div style={myStyle}>
@@ -149,24 +194,24 @@ function diabetes()
         <div className="container" style={{display:'flex',flexDirection:'row',width:'100%',marginTop:20,justifyContent:'space-evenly',alignItems:'center',marginLeft:18}}>
             <div className="component"style={{display:'flex',flexDirection:'column',width:'100%',justifyContent:'space-evenly',height:'100%',minWidth:300}}>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center'}}>  
-                    <text style={{marginRight:7,fontSize:'2vh'}}>Age:</text>
-                <input min="0" type='number' pattern="[0-9]*" value={age} onChange={(event) => setAge(event.target.value)} className="e-input"  placeholder="Enter Age" style={{fontSize:'1%vw',width:'200%'}} />
+                    <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>Age:</text>
+                <input min="0" type='number' pattern="[0-9]*" value={age} onChange={(event) => setAge(event.target.value)} className="e-input"  placeholder="Enter Age" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'200%'}} />
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
-                    <text style={{marginRight:7,fontSize:'2vh'}}>BMI:</text>
-                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={bmi} onChange={(event) => setBmi(event.target.value)} placeholder="Enter BMI in kg/m²" style={{fontSize:'1%vw',width:'100%'}} />
+                    <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>BMI:</text>
+                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={bmi} onChange={(event) => setBmi(event.target.value)} placeholder="Enter BMI in kg/m²" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}} />
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
-                    <text  style={{marginRight:7,fontSize:'2vh'}}>HbA1c:</text>
-                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={hba} onChange={(event) => setHba(event.target.value)} placeholder="Enter hbA1c in mmol/mol" style={{fontSize:'1%vw',width:'100%'}} />
+                    <text  style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>HbA1c:</text>
+                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={hba} onChange={(event) => setHba(event.target.value)} placeholder="Enter hbA1c in mmol/mol" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}} />
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
-                    <text style={{marginRight:7,fontSize:'2vh'}}>Glucose:</text>
-                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={glucose} onChange={(event) => setGlu(event.target.value)} placeholder="Enter Blood Glucose Level" style={{fontSize:'1%vw',width:'100%'}} />
+                    <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>Glucose:</text>
+                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={glucose} onChange={(event) => setGlu(event.target.value)} placeholder="Enter Blood Glucose Level" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}} />
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
-                    <text style={{marginRight:7,fontSize:'2vh'}}>Gender:</text>
-                    <select value={gender} onChange={(event) => setGen(event.target.value)} style={{fontSize:'1%vw',width:'100%'}}>
+                    <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>Gender:</text>
+                    <select value={gender} onChange={(event) => setGen(event.target.value)} style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}}>
                     <option value=''>Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -174,16 +219,16 @@ function diabetes()
                     </select>  
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
-                    <text style={{marginRight:7,fontSize:'2vh'}}>Hypertension:</text>
-                    <select value={hyper} onChange={(event) => setHyp(event.target.value)} style={{fontSize:'1%vw',width:'100%'}}>
+                    <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>Hypertension:</text>
+                    <select value={hyper} onChange={(event) => setHyp(event.target.value)} style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}}>
                     <option value=''>Select Hypertension</option>
                     <option value="0">No</option>
                     <option value="1">Yes</option>
                     </select>  
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>
-                    <text style={{marginRight:7,fontSize:'2vh'}}>Smoking History:</text>
-                    <select value={smoking} onChange={(event) => setSmo(event.target.value)} style={{fontSize:'1%vw',width:'100%',height:60}}>
+                    <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>Smoking History:</text>
+                    <select value={smoking} onChange={(event) => setSmo(event.target.value)} style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%',height:60}}>
                     <option value=''>Select Smoking History</option>
                     <option value="current">Current</option>
                     <option value="ever">Ever</option>
@@ -194,8 +239,8 @@ function diabetes()
                     </select>  
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
-                    <text style={{marginRight:7,fontSize:'2vh'}}>Heart Disease:</text>
-                    <select value={hea} onChange={(event) => setHea(event.target.value)} style={{fontSize:'1%vw',width:'100%',height:55}}>
+                    <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>Heart Disease:</text>
+                    <select value={hea} onChange={(event) => setHea(event.target.value)} style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%',height:55}}>
                     <option value=''>Select Heart Disease</option>
                     <option value="0">No</option>
                     <option value="1">Yes</option>
@@ -207,26 +252,26 @@ function diabetes()
         <div style={{height:80}}>
         {load && <Lottie speed={1}options={defaultOptions1} height={50} width={50}/>}
         {data === "No Diabetes" ? (
-            <text style={{fontSize:40,color:'green'}}>{data}</text>
+            <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:40,color:'green'}}>{data}</text>
              ) : (
                 null
                  )}
         {data === "Diabetes" ? (
-            <text style={{fontSize:40,color:'red'}}>{data}</text>
+            <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:40,color:'red'}}>{data}</text>
              ) : (
                 null
                  )}
         </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>  
-                    <button onClick={checkVals} style={{height:'auto',width:'auto',borderRadius:20,fontSize:'3vh',color:'white',backgroundColor:'#2F6398',boxShadow: '1px 1px 2px #000000',cursor:'pointer',borderWidth:5,borderColor:'#2F6398',marginBottom:25}}>Submit</button>
-                    <button onClick={ClearInputs} style={{height:'auto',width:'auto',borderRadius:20,fontSize:'2.7vh',color:'white',backgroundColor:'#394857',boxShadow: '1px 1px 2px #000000',cursor:'pointer',borderWidth:5,borderColor:'#394857',marginBottom:25}}>Clear Inputs</button>
+                    <button onClick={checkVals} style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',height:'auto',width:'auto',borderRadius:20,fontSize:'3vh',color:'white',backgroundColor:'#2F6398',boxShadow: '1px 1px 2px #000000',cursor:'pointer',borderWidth:5,borderColor:'#2F6398',marginBottom:25}}>Submit</button>
+                    <button onClick={ClearInputs} style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',height:'auto',width:'auto',borderRadius:20,fontSize:'2.7vh',color:'white',backgroundColor:'#394857',boxShadow: '1px 1px 2px #000000',cursor:'pointer',borderWidth:5,borderColor:'#394857',marginBottom:25}}>Clear Inputs</button>
                 </div>
         </div>
         </div>
     </div>
             </div>
             <footer style={{ backgroundColor: '#2F6398', height: 30, textAlign: 'center' }}>
-                <text style={{ fontSize: 20, color: 'white' }}>© ASCEND Solutions 2023.</text>
+                <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', fontSize: 20, color: 'white' }}>© ASCEND Solutions 2023.</text>
             </footer>
             {isDialogOpen && (
                 <div className="overlay">
@@ -246,6 +291,50 @@ function diabetes()
                             <h2>Error !</h2>
                             <p>Input values are empty.</p>
                             <button onClick={closeDialog1}>Close</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+                        {isDialogAge && (
+                <div className="overlay">
+                    <div className="dialog">
+                        <div className="dialog-content">
+                            <h2>Error !</h2>
+                            <p>Invalid Age.</p>
+                            <button onClick={closeAge}>Close</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+                        {isDialogBMI && (
+                <div className="overlay">
+                    <div className="dialog">
+                        <div className="dialog-content">
+                            <h2>Error !</h2>
+                            <p>Invalid BMI.</p>
+                            <button onClick={closeBMI}>Close</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+                        {isDialogHba && (
+                <div className="overlay">
+                    <div className="dialog">
+                        <div className="dialog-content">
+                            <h2>Error !</h2>
+                            <p>Invalid HbA1c.</p>
+                            <button onClick={closeHba}>Close</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+                        {isDialogGlu && (
+                <div className="overlay">
+                    <div className="dialog">
+                        <div className="dialog-content">
+                            <h2>Error !</h2>
+                            <p>Invalid Glucose.</p>
+                            <button onClick={closeGlu}>Close</button>
                         </div>
                     </div>
                 </div>
