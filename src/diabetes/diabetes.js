@@ -50,6 +50,9 @@ function diabetes()
     const navigateHeart = () => {
         navigate('/heart');
       };
+    const navigateHome = () => {
+        navigate('/');
+    };
     const checkVals = async () =>{
         if(age !== '' &&  gender!== ''&& bmi !==''&& hyper !==''&& hba !==''&& smoking !==''&& glucose !==''&& hea !=='')
         {
@@ -184,7 +187,8 @@ function diabetes()
                 <img src={background1} alt="Logo" style={{ height: 60, width: 60, borderRadius: 8 }} />
             </header>
             <header style={{ backgroundColor: 'grey', marginTop: 20,marginBottom:20, display: 'flex', height: 30 ,flexDirection:'row'}}>
-                <text onClick={navigateHeart} style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',cursor:'pointer', color: 'white', fontSize: 20, height: 30, paddingInline: 10, marginLeft: 50,marginTop:3 }}>Heart</text>
+            <text onClick={navigateHome} style={{ fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',cursor:'pointer',color: 'white', fontSize: 20, paddingInline: 20,marginTop:3, marginLeft: 30 }}>Home</text>
+                <text onClick={navigateHeart} style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',cursor:'pointer', color: 'white', fontSize: 20, height: 30, paddingInline: 10,marginTop:3 }}>Heart</text>
                 <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', cursor:'pointer',color: 'white', fontSize: 20, paddingInline: 20 , fontWeight: 'bold', backgroundColor: '#1F3B57'}}>Diabetes</text>
                 <IoSearchOutline style={{ color: 'white', fontSize: 30, backgroundColor: '#1F3B57', marginLeft: 'auto', marginRight: 20 }} />
             </header>
@@ -295,7 +299,7 @@ function diabetes()
                     </div>
                 </div>
             )}
-                        {isDialogAge && (
+            {isDialogAge && (
                 <div className="overlay">
                     <div className="dialog">
                         <div className="dialog-content">
@@ -306,7 +310,7 @@ function diabetes()
                     </div>
                 </div>
             )}
-                        {isDialogBMI && (
+            {isDialogBMI && (
                 <div className="overlay">
                     <div className="dialog">
                         <div className="dialog-content">
@@ -317,7 +321,7 @@ function diabetes()
                     </div>
                 </div>
             )}
-                        {isDialogHba && (
+            {isDialogHba && (
                 <div className="overlay">
                     <div className="dialog">
                         <div className="dialog-content">
@@ -328,7 +332,7 @@ function diabetes()
                     </div>
                 </div>
             )}
-                        {isDialogGlu && (
+           {isDialogGlu && (
                 <div className="overlay">
                     <div className="dialog">
                         <div className="dialog-content">

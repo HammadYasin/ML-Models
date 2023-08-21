@@ -63,6 +63,9 @@ function Heart()
     const navigateDiabetes = () => {
         navigate('/diabetes',{replace:true});
       };
+    const navigateHome = () => {
+        navigate('/',{replace:true});
+    };
     const checkVals = async () =>{
         if(age !== '' &&  gender!== ''&& cp !==''&& trtbps !==''&& chol !==''&& fbs !==''&& restecg !==''&& thalachh !==''&& exng !==''&& oldpeak !==''&& slp !==''&& caa !==''&& thall !=='')
         {
@@ -221,7 +224,8 @@ function Heart()
                 <img src={background1} alt="Logo" style={{ height: 60, width: 60, borderRadius: 8 }} />
             </header>
             <header style={{ backgroundColor: 'grey', marginTop: 20,marginBottom:20, display: 'flex', height: 30 }}>
-                <text style={{ fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',cursor:'pointer',color: 'white', fontSize: 20, height: 30, backgroundColor: '#1F3B57', paddingInline: 10, fontWeight: 'bold', marginLeft: 50 }}>Heart</text>
+            <text onClick={navigateHome} style={{ fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',cursor:'pointer',color: 'white', fontSize: 20, paddingInline: 20,marginTop:3, marginLeft: 30 }}>Home</text>
+                <text style={{ fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',cursor:'pointer',color: 'white', fontSize: 20, height: 30, backgroundColor: '#1F3B57', paddingInline: 10, fontWeight: 'bold' }}>Heart</text>
                 <text onClick={navigateDiabetes} style={{ fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',cursor:'pointer',color: 'white', fontSize: 20, paddingInline: 20,marginTop:3 }}>Diabetes</text>
                 <IoSearchOutline style={{ color: 'white', fontSize: 30, backgroundColor: '#1F3B57', marginLeft: 'auto', marginRight: 20 }} />
             </header>
@@ -367,7 +371,7 @@ function Heart()
                     </div>
                 </div>
             )}
-                        {isDialogAge && (
+            {isDialogAge && (
                 <div className="overlay">
                     <div className="dialog">
                         <div className="dialog-content">
@@ -378,7 +382,7 @@ function Heart()
                     </div>
                 </div>
             )}
-                        {isDialogTrt && (
+            {isDialogTrt && (
                 <div className="overlay">
                     <div className="dialog">
                         <div className="dialog-content">
@@ -389,7 +393,7 @@ function Heart()
                     </div>
                 </div>
             )}
-                        {isDialogChol && (
+            {isDialogChol && (
                 <div className="overlay">
                     <div className="dialog">
                         <div className="dialog-content">
@@ -400,7 +404,7 @@ function Heart()
                     </div>
                 </div>
             )}
-                        {isDialogTha && (
+            {isDialogTha && (
                 <div className="overlay">
                     <div className="dialog">
                         <div className="dialog-content">
@@ -411,7 +415,7 @@ function Heart()
                     </div>
                 </div>
             )}
-                        {isDialogCaa && (
+            {isDialogCaa && (
                 <div className="overlay">
                     <div className="dialog">
                         <div className="dialog-content">
@@ -422,7 +426,7 @@ function Heart()
                     </div>
                 </div>
             )}
-                        {isDialogOld && (
+            {isDialogOld && (
                 <div className="overlay">
                     <div className="dialog">
                         <div className="dialog-content">

@@ -5,6 +5,7 @@ import Diabetes from '../diabetes/diabetes'
 import Lottie from 'react-lottie';
 import opening from '../animations/opening.json';
 import background1 from '../images/image_p.png';
+import { IoHeartCircleOutline,IoSearchOutline } from "react-icons/io5";
 import "./App.css";
 export default function App() {
   return (
@@ -17,14 +18,20 @@ export default function App() {
 }
 function Home(){
   const navigate = useNavigate();
-  useEffect(() => {
-    setTimeout(() => {
-        navigate('./heart')
-      }, 3000)
-      setTimeout(() =>{
+  const navigateDiabetes = () => {
+    navigate('/diabetes',{replace:true});
+  };
+  const navigateHeart = () => {
+    navigate('/heart');
+  };
+//   useEffect(() => {
+//     setTimeout(() => {
+//         navigate('./heart')
+//       }, 3000)
+//       setTimeout(() =>{
 
-      },)
-}, []);  
+//       },)
+// }, []);  
     const defaultOptions = {
         loop: true,
         autoplay: true,
@@ -39,12 +46,80 @@ function Home(){
         fontSize:30,
         paddingInline:20
       };
-    return(<div className='App' style={{display:'flex',justifyContent:'center',flexDirection:'column',alignItems:'center',alignSelf:'center',backgroundColor:'#2F6398'}}>
-        <text style={bodyStyle}>Machine Learning Models</text>
-        <Lottie speed={2}options={defaultOptions} style={{height:'auto',width:'350',maxWidth:350}}/>
-        <div style={{display:'flex',flexDirection:'row'}}>
+      const head = {
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignContent:'center',
+        display:'flex',
+        flexDirection:'column',
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 4,
+        elevation: 5000,
+        backgroundColor: '#033258',
+        width: 170,
+        height: 30,
+        opacity: 0.9,
+        fontSize:16,
+        fontFamily:'-apple-system, BlinkMacSystemFont, sans-serif',
+        fontWeight:'bold',
+        letterSpacing:0.25,
+        color:'white',
+        marginTop:5
+      };
+      const text = {
+        fontFamily:'-apple-system, BlinkMacSystemFont, sans-serif',
+        marginTop:10,
+        cursor:'pointer',
+      };
+    return(<div className='App' style={{backgroundColor:'#2F6398'}}>
+      <header style={{ backgroundColor: 'grey', marginTop: 20,marginBottom:20, display: 'flex', height: 30 ,alignContent:'center',justifyContent:'center',alignItems:'center'}}>
+        <text style={{fontSize:20,color:'white',fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',}}>Advanced Analytics Use-Cases</text>
+      </header>
+      <div style={{height:'auto',backgroundColor:'#2F6398',borderWidth:10,borderRadius:20,alignSelf:'center',boxShadow: '1px 2px 9px #000000',padding: '0 10px',width:'auto',flexWrap:'wrap',marginTop:25,marginBottom:35,maxWidth:'100%',minWidth:'50%',marginLeft:25,marginRight:25}}>
+        <div className="container" style={{display:'flex',flexDirection:'row',width:'100%',marginTop:20,justifyContent:'space-evenly',alignItems:'center',marginLeft:18}}>
+            <div className="component"style={{display:'flex',flexDirection:'column',width:'100%',justifyContent:'space-evenly',height:'100%',minWidth:300}}>
+              <div style={{display:'flex',flexDirection:'column'}}>
+                <div style={{backgroundColor:'#FFFFFF',height:180,width:'auto',boxShadow: '1px 2px 9px #000000',padding: '0 10px',borderWidth:10,borderRadius:20,display:'flex',flexDirection:'column',alignItems:'center'}}>
+                  <div style={head}><text>Machine Learning</text></div>
+                  <text style={text}>Chance of Rain</text>
+                  <text style={text}>Forecasting Example</text>
+                  <text onClick={navigateDiabetes}style={{color:'blue',fontWeight:'bold',marginTop:5}}>Diabetes Prediction</text>
+                  <text onClick={navigateHeart} style={{color:'blue',fontWeight:'bold',marginTop:5}}>Heart Attack Prediction </text>
+                </div>
+                <div style={{backgroundColor:'#FFFFFF',height:180,width:'auto',boxShadow: '1px 2px 9px #000000',padding: '0 10px',borderWidth:10,borderRadius:20,display:'flex',flexDirection:'column',alignItems:'center',marginTop:15}}>
+                  <div style={head}><text>Image Classification</text></div>
+                  <text style={text}>X-Ray Pneumonia Detection</text>
+                  <text style={text}>Potato Plan Disease</text>
+                  <text style={text}>Garbage Bins Cleanliness</text>
+                </div>
+              </div>
+            </div>
+            <div className="component"style={{display:'flex',flexDirection:'column',width:'100%',justifyContent:'space-evenly',height:'100%',minWidth:300}}>
+            <div style={{display:'flex',flexDirection:'column'}}>
+                <div style={{backgroundColor:'#FFFFFF',height:180,width:'auto',boxShadow: '1px 2px 9px #000000',padding: '0 10px',borderWidth:10,borderRadius:20,display:'flex',flexDirection:'column',alignItems:'center'}}>
+                  <div style={head}><text>Anomaly Detection</text></div>
+                  <text style={text}>To be determined..</text>
+                </div>
+                <div style={{backgroundColor:'#FFFFFF',height:180,width:'auto',boxShadow: '1px 2px 9px #000000',padding: '0 10px',borderWidth:10,borderRadius:20,display:'flex',flexDirection:'column',alignItems:'center',marginTop:15}}>
+                  <div style={head}><text>Video Analytics</text></div>
+                  <text style={text}>People Counter</text>
+                  <text style={text}>People In and Out</text>
+                  <text style={text}>Cars Counter</text>
+                </div>
+              </div>
+            </div>
+            <div className="component"style={{display:'flex',flexDirection:'column',width:'100%'}}>
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
+                  <Lottie speed={2}options={defaultOptions} style={{height:'auto',width:'350',maxWidth:350}}/>
+                    <img src={background1} alt="Logo" style={{ height: 'auto', width: 'auto',maxHeight:120,maxWidth:120, borderRadius: 40/2,marginTop:10 }} />
+                </div>
+            </div>
         </div>
-        <img src={background1} alt="Logo" style={{ height: 150, width: 150, borderRadius: 40/2 }} />
-        </div>
+      </div>
+      <footer style={{ backgroundColor: 'grey', height: 30, textAlign: 'center' }}>
+        <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', fontSize: 20, color: 'white' }}>© ASCEND Solutions 2023.</text>
+      </footer>
+      </div>
     )
 }
