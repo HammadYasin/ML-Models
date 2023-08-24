@@ -109,3 +109,14 @@ button {
   width: 100%;
   height: 100%;
 }
+.fading-image {
+  position: relative;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fading-image.hidden {
+  opacity: 0;
+  pointer-events: none; /* Disable interaction during fade out */
+}
+

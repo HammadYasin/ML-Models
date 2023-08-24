@@ -48,10 +48,10 @@ function diabetes()
         setDialogHba(false);
     };
     const navigateHeart = () => {
-        navigate('/heart');
+        navigate('/heart',{replace:true});
       };
     const navigateHome = () => {
-        navigate('/');
+        navigate('/Home',{replace:true});
     };
     const checkVals = async () =>{
         if(age !== '' &&  gender!== ''&& bmi !==''&& hyper !==''&& hba !==''&& smoking !==''&& glucose !==''&& hea !=='')
@@ -187,10 +187,10 @@ function diabetes()
                 <img src={background1} alt="Logo" style={{ height: 60, width: 60, borderRadius: 8 }} />
             </header>
             <header style={{ backgroundColor: 'grey', marginTop: 20,marginBottom:20, display: 'flex', height: 30 ,flexDirection:'row'}}>
-            <text onClick={navigateHome} style={{ fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',cursor:'pointer',color: 'white', fontSize: 20, paddingInline: 20,marginTop:3, marginLeft: 30 }}>Home</text>
+            <text onClick={navigateHome} style={{ fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',cursor:'pointer',color: 'white', fontSize: 20, paddingInline: 20,marginTop:3}}>Home</text>
                 <text onClick={navigateHeart} style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',cursor:'pointer', color: 'white', fontSize: 20, height: 30, paddingInline: 10,marginTop:3 }}>Heart</text>
                 <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', cursor:'pointer',color: 'white', fontSize: 20, paddingInline: 20 , fontWeight: 'bold', backgroundColor: '#1F3B57'}}>Diabetes</text>
-                <IoSearchOutline style={{ color: 'white', fontSize: 30, backgroundColor: '#1F3B57', marginLeft: 'auto', marginRight: 20 }} />
+                <IoSearchOutline style={{ color: 'white', fontSize: 30, backgroundColor: '#1F3B57', marginLeft: 'auto',marginRight:5 }} />
             </header>
             <div style={myStyle}>
     <div style={{height:'auto',backgroundColor:'#FFFFFF',borderWidth:10,borderRadius:20,alignSelf:'center',boxShadow: '1px 2px 9px #000000',padding: '0 10px',width:'auto',flexWrap:'wrap',marginTop:25,marginBottom:35,maxWidth:'100%',minWidth:'50%',marginLeft:25,marginRight:25}}>
