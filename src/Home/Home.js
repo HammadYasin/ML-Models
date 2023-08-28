@@ -17,6 +17,9 @@ function Home(){
     const navigateDiabetes = () => {
       navigate('/diabetes',{replace:true});
     };
+    const navigateLogout = () => {
+      navigate('/',{replace:true});
+    };
     const navigateHeart = () => {
       navigate('/heart',{replace:true});
     };
@@ -63,8 +66,7 @@ function Home(){
       return(<div className='App' style={{backgroundImage: `url(${background})`,backgroundSize: 'cover',backgroundRepeat: 'no-repeat'}}>
                     <header style={{height: 160, color: '#FFFFFF', fontSize: 50, display: 'flex', flexDirection: 'row-reverse', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <IoAnalyticsOutline style={{color:'black'}}/>
-                    <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'3vh',alignSelf:'center',color:'black'}}>Home</text>
+                    <button onClick={navigateLogout} style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',height:'auto',width:'auto',borderRadius:20,fontSize:'2.7vh',color:'white',backgroundColor:'#394857',boxShadow: '1px 1px 2px #000000',cursor:'pointer',borderWidth:5,borderColor:'#394857',marginBottom:25}}>Log Out</button>
                 </div>
                 <img src={background1} alt="Logo" style={{ height: 170, width: 170 }} />
             </header>

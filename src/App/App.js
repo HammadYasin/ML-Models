@@ -6,7 +6,7 @@ import Home from '../Home/Home'
 import Login from '../login/login'
 import Lottie from 'react-lottie';
 import opening from '../animations/opening.json';
-import background1 from '../images/logo_t.png';
+import background1 from '../images/logo_s.png';
 import { IoHeartCircleOutline,IoSearchOutline } from "react-icons/io5";
 import "./App.css";
 
