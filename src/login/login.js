@@ -29,6 +29,7 @@ function login()
             if(user=='cmc-analytics'&& pass=='Ascend#2023')
             {
                 navigateHome();
+                navigateHome();
             }
             else
             {
