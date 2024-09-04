@@ -2,6 +2,7 @@ import {Routes, Route, useNavigate,useLocation} from 'react-router-dom';
 import React, { useEffect,useState } from "react";
 import Heart from '../heart/heart';
 import Diabetes from '../diabetes/diabetes'
+import Weather from '../weather/weather'
 import Home from '../Home/Home'
 import Login from '../login/login'
 import Lottie from 'react-lottie';
@@ -24,6 +25,7 @@ export default function App() {
               <Route exact path="/Home" element={<Home />}/>
               <Route exact path="/heart" element={<Heart />} />
               <Route exact path="/diabetes" element={<Diabetes />} />
+              <Route exact path="/weather" element={<Weather />} />
             </Routes>
   );
 }

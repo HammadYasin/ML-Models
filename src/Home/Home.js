@@ -2,6 +2,7 @@ import {Routes, Route, useNavigate,useLocation} from 'react-router-dom';
 import React, { useEffect,useState } from "react";
 import Heart from '../heart/heart';
 import Diabetes from '../diabetes/diabetes'
+import weather from '../weather/weather';
 import Lottie from 'react-lottie';
 import opening from '../animations/opening.json';
 import background from '../images/loginback.jpg';
@@ -22,6 +23,9 @@ function Home(){
     };
     const navigateHeart = () => {
       navigate('/heart',{replace:true});
+    };
+    const navigateweather= () => {
+      navigate('/weather',{replace:true});
     };
       const defaultOptions = {
           loop: true,
@@ -78,7 +82,7 @@ function Home(){
                   <div style={{backgroundColor:'#FFFFFF',height:180,width:'auto',boxShadow: '1px 2px 9px #000000',padding: '0 10px',borderWidth:10,borderRadius:20,display:'flex',flexDirection:'column',alignItems:'center'}}>
                     <div style={head}><text>Machine Learning</text></div>
                     <text style={text}>Chance of Rain</text>
-                    <text style={text}>Forecasting Example</text>
+                    <text onClick={navigateweather} style={{color:'blue',fontWeight:'bold',marginTop:5,cursor:'pointer'}}>Weather Type Prediction </text>
                     <text onClick={navigateHeart} style={{color:'blue',fontWeight:'bold',marginTop:5,cursor:'pointer'}}>Heart Attack Prediction </text>
                     <text onClick={navigateDiabetes}style={{color:'blue',fontWeight:'bold',marginTop:5,cursor:'pointer'}}>Diabetes Prediction</text>
                   </div>
@@ -112,7 +116,7 @@ function Home(){
           </div>
         </div>
         <footer style={{ backgroundColor: '#2F6398', height: 30, textAlign: 'center' }}>
-          <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', fontSize: 20, color: 'white' }}>© ASCEND Solutions 2023.</text>
+          <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', fontSize: 20, color: 'white' }}>© ASCEND Solutions 2024.</text>
         </footer>
         </div>
       )

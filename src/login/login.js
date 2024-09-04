@@ -122,7 +122,7 @@ function login()
     </div>
             </div>
             <footer style={{ backgroundColor: '#2F6398', height: 30, textAlign: 'center' }}>
-                <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', fontSize: 20, color: 'white' }}>© ASCEND Solutions 2023.</text>
+                <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', fontSize: 20, color: 'white' }}>© ASCEND Solutions 2024.</text>
             </footer>
             {isDialogOpen && (
                 <div className="overlay">

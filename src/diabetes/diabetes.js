@@ -53,6 +53,9 @@ function diabetes()
     const navigateHome = () => {
         navigate('/Home',{replace:true});
     };
+    const navigateWeather = () => {
+        navigate('/weather',{replace:true});
+    };
     const checkVals = async () =>{
         if(age !== '' &&  gender!== ''&& bmi !==''&& hyper !==''&& hba !==''&& smoking !==''&& glucose !==''&& hea !=='')
         {
@@ -190,6 +193,7 @@ function diabetes()
             <text onClick={navigateHome} style={{ fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',cursor:'pointer',color: 'white', fontSize: 20, paddingInline: 20,marginTop:3}}>Home</text>
                 <text onClick={navigateHeart} style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',cursor:'pointer', color: 'white', fontSize: 20, height: 30, paddingInline: 10,marginTop:3 }}>Heart</text>
                 <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', cursor:'pointer',color: 'white', fontSize: 20, paddingInline: 20 , fontWeight: 'bold', backgroundColor: '#1F3B57'}}>Diabetes</text>
+                <text onClick={navigateWeather} style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',cursor:'pointer', color: 'white', fontSize: 20, height: 30, paddingInline: 10,marginTop:3 }}>Weather</text>
                 <IoSearchOutline style={{ color: 'white', fontSize: 30, backgroundColor: '#1F3B57', marginLeft: 'auto',marginRight:5 }} />
             </header>
             <div style={myStyle}>
@@ -275,7 +279,7 @@ function diabetes()
     </div>
             </div>
             <footer style={{ backgroundColor: '#2F6398', height: 30, textAlign: 'center' }}>
-                <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', fontSize: 20, color: 'white' }}>© ASCEND Solutions 2023.</text>
+                <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', fontSize: 20, color: 'white' }}>© ASCEND Solutions 2024.</text>
             </footer>
             {isDialogOpen && (
                 <div className="overlay">

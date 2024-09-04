@@ -2,20 +2,17 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# Sample data
 items = []
 
 @app.route('/heart', methods=['POST'])
 def heart():
     
-    request_data = request.json  # Get JSON data from the request
+    request_data = request.json
     import pickle
     import pandas as pd
     filename = 'Class_heart.sav'
     model = pickle.load(open(filename, 'rb'))
     data = pd.DataFrame([request_data])
-    #excel_filename = 'output_heart.xlsx'
-    #data.to_excel(excel_filename, index=False)
     class_names = ['No Heart Attack', 'Heart Attack']
     output = model.predict(data)
     result = class_names[output[0]]
@@ -25,17 +22,87 @@ def heart():
 def diabetes():
     global items
     
-    request_data = request.json  # Get JSON data from the request
+    request_data = request.json
     import pickle
     import pandas as pd
     filename = 'diabetes_xgb_model.sav'
     model = pickle.load(open(filename, 'rb'))
     data = pd.DataFrame([request_data])
-    #excel_filename = 'output_diabetes.xlsx'
-    #data.to_excel(excel_filename, index=False)
     class_names = ['No Diabetes', 'Diabetes']
     output = model.predict(data)
     result = class_names[output[0]]
+    return result
+
+@app.route('/weather', methods=['POST'])
+def weather():
+    global items
+    
+    request_data = request.json 
+    import pickle
+    import pandas as pd
+    import numpy as np
+    filename = 'weather_type.sav'
+    model = pickle.load(open(filename, 'rb'))
+    data = pd.DataFrame([request_data])
+    data['Temperature'] = pd.to_numeric(data['Temperature'], errors='coerce')
+    data['Humidity'] = pd.to_numeric(data['Humidity'], errors='coerce')
+    data['Wind Speed'] = pd.to_numeric(data['Wind Speed'], errors='coerce')
+    data['Precipitation (%)'] = pd.to_numeric(data['Precipitation (%)'], errors='coerce')
+    data['Atmospheric Pressure'] = pd.to_numeric(data['Atmospheric Pressure'], errors='coerce')
+    data['UV Index'] = pd.to_numeric(data['UV Index'], errors='coerce')
+    data['Visibility (km)'] = pd.to_numeric(data['Visibility (km)'], errors='coerce')
+    ################################## Feature Engineering##########################
+    def celsius_to_fahrenheit(celsius):
+        return (celsius * 9/5) + 32
+
+    def fahrenheit_to_celsius(fahrenheit):
+        return (fahrenheit - 32) * 5 / 9
+
+    def calculate_heat_index(df, temp_col, humidity_col):
+        T = celsius_to_fahrenheit(df[temp_col])
+        R = df[humidity_col]
+        
+        HI = (
+            -42.379 + 2.04901523 * T + 10.14333127 * R 
+            - 0.22475541 * T * R - 6.83783e-3 * T**2 
+            - 5.481717e-2 * R**2 + 1.22874e-3 * T**2 * R 
+            + 8.5282e-4 * T * R**2 - 1.99e-6 * T**2 * R**2
+        )
+        
+        return HI
+    def calculate_wind_chill(row):
+        T = row['Temperature']
+        V = row['Wind Speed']
+        wind_chill = (13.12 + 0.6215 * T 
+                    - 11.37 * (V ** 0.16) 
+                    + 0.3965 * T * (V ** 0.16))
+        return wind_chill
+    a = 17.27
+    b = 237.7
+
+    def calculate_alpha(T, RH):
+        return (a * T) / (b + T) + np.log(RH / 100.0)
+    def calculate_dew_point(row):
+        alpha = calculate_alpha(row['Temperature'], row['Humidity'])
+        return (b * alpha) / (a - alpha)
+    data['Dew Point'] = data.apply(calculate_dew_point, axis=1)
+    data['Heat Index'] = calculate_heat_index(data, 'Temperature', 'Humidity')
+    data['Heat Index'] = fahrenheit_to_celsius(data['Heat Index'])
+    data['Wind Chill'] = data.apply(calculate_wind_chill, axis=1)
+    #######################################################################################
+
+    output = model.predict(data)
+    result = output[0]
+    if result == 0:
+        result = "Cloudy"
+    elif result == 1:
+        result = "Rainy"
+    elif result == 2:
+        result = "Snowy"
+    elif result == 3:
+        result = "Sunny"
+    else:
+        result = "Unknown weather type"
     return result
 
 if __name__ == '__main__':
