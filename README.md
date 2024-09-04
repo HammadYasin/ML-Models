@@ -1,71 +1,81 @@
-# Getting Started with Create React App
+# Advanced Analytics Use Cases Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Advanced Analytics Use Cases website developed by the Data Science team at Ascend Solutions Limited. This open-source project showcases three predictive models: Heart Attack Prediction, Weather Type Prediction, and Diabetes Prediction. 
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Heart Attack Prediction**: Predict the likelihood of a heart attack based on input parameters.
+- **Weather Type Prediction**: Classify the weather into one of four conditions: Cloudy, Rainy, Snowy, and Sunny.
+- **Diabetes Prediction**: Assess the probability of diabetes based on various input metrics.
 
-### `npm start`
+## Technology Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend**: React
+- **Backend**: Flask (APIs)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+### Frontend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/ML-Models.git
+    ```
+2. Navigate to the frontend directory:
+    ```bash
+    cd ML-Models
+    ```
+3. Install the necessary npm packages:
+    ```bash
+    npm install --force
+    ```
 
-### `npm run build`
+### Backend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Navigate to the backend directory:
+    ```bash
+    cd ML-Models/backend
+    ```
+2. Install Python and Flask:
+    ```bash
+    pip install flask
+    ```
+3. Install additional Python dependencies:
+    ```bash
+    pip install pandas
+    pip install numpy 
+    pip install pickle
+    ```
+4. Update the Flask configuration to change the proxy to host locally on a different port if needed, as Flask and React cannot be hosted on the same port.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Running the Application
 
-### `npm run eject`
+1. **Start the Flask Backend**:
+    ```bash
+    python server.py
+    ```
+2. **Start the React Frontend**:
+    ```bash
+    npm start
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contributing
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Feel free to contribute to this project by submitting pull requests or opening issues. Your contributions are welcome!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## License
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This project is currently open source. Please refer to the [LICENSE](LICENSE) file for more details.
 
-## Learn More
+## Contact
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For any questions or inquiries, please contact the Data Science team at Ascend Solutions Limited:
+- Hammad Yasin: [hammad.yasin@ascend.com.sa](mailto:hammad.yasin@ascend.com.sa)
+- Amir Saeed: [amir.saeed@ascend.com.sa](mailto:amir.saeed@ascend.com.sa)
+- Musharraf Tameer: [musharraf.tameer@ascend.com.sa](mailto:musharraf.tameer@ascend.com.sa)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+Happy analyzing!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# Heart-Attack-Model" 
