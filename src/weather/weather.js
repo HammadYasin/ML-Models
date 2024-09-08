@@ -14,7 +14,7 @@ function weather()
 {
     const navigate = useNavigate();
     const [data, setdata] = useState(null);
-    const [temp, setTemp] = useState();
+    const [temp, setTemp] = useState('');
     const [humi, setHumi] = useState('');
     const [winds, setWinds] = useState('');
     const [preci, setPreci] = useState('');
@@ -51,15 +51,15 @@ function weather()
     const checkVals = async () =>{
         if(temp !== '' &&  humi!== ''&& winds !==''&& preci !==''&& clou !==''&& atmos !==''&& uv !==''&& sea !==''&& vis !==''&& loc !=='')
         {
-            if(temp>-50&&temp<55)
+            if(temp>-51&&temp<56)
             {
-                if(humi>0&&humi<100)
+                if(humi>0&&humi<101)
                 {
-                    if(winds>0&&winds<120)
+                    if(winds>0&&winds<121)
                     {
-                        if(preci>0&&preci<100)
+                        if(preci>0&&preci<101)
                         {
-                            if(atmos>980&&atmos<1100)
+                            if(atmos>980&&atmos<1101)
                                 {
                                     if(uv>0&&uv<14)
                                         {
@@ -238,19 +238,19 @@ function weather()
             <div className="component"style={{display:'flex',flexDirection:'column',width:'100%',justifyContent:'space-evenly',height:'100%',minWidth:300}}>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center'}}>  
                     <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>Temperature:</text>
-                <input min="0" type='number' pattern="[0-9]*" value={temp} onChange={(event) => setTemp(event.target.value)} className="e-input"  placeholder="Enter Temperature (-50 to 50°C)" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'200%'}} />
+                <input min="0" type='number' pattern="[0-9]*" value={temp} onChange={(event) => setTemp(event.target.value)} className="e-input"  placeholder="Enter Temperature(-50 to 50°C)" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'200%'}} />
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
                     <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>Humidity:</text>
-                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={humi} onChange={(event) => setHumi(event.target.value)} placeholder="Enter Humidity (0 to 100%)" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}} />
+                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={humi} onChange={(event) => setHumi(event.target.value)} placeholder="Enter Humidity(0 to 100%)" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}} />
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
                     <text  style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>Wind Speed:</text>
-                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={winds} onChange={(event) => setWinds(event.target.value)} placeholder="Enter Wind Speed (0 to 120 km/h)" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}} />
+                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={winds} onChange={(event) => setWinds(event.target.value)} placeholder="Enter Wind Speed(0 to 120 km/h)" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}} />
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
                     <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>Precipitation:</text>
-                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={preci} onChange={(event) => setPreci(event.target.value)} placeholder="Enter Precipitation (0 to 100%)" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}} />
+                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={preci} onChange={(event) => setPreci(event.target.value)} placeholder="Enter Precipitation(0 to 100%)" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}} />
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
                     <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>Cloud Cover:</text>
@@ -283,15 +283,15 @@ function weather()
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
                     <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>Atmosphere:</text>
-                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={atmos} onChange={(event) => setAtmos(event.target.value)} placeholder="Enter Atmosphere (980 to 1050hPa)" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}} />
+                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={atmos} onChange={(event) => setAtmos(event.target.value)} placeholder="Enter Atmosphere(980 to 1050hPa)" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}} />
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
                     <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>UV Index:</text>
-                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={uv} onChange={(event) => setUV(event.target.value)} placeholder="Enter UV Index (0 to 19+)" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}} />
+                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={uv} onChange={(event) => setUV(event.target.value)} placeholder="Enter UV Index(0 to 13+)" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}} />
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:15}}>  
                     <text style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',marginRight:7,fontSize:'2vh'}}>Visibility:</text>
-                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={vis} onChange={(event) => setVis(event.target.value)} placeholder="Enter Visibility (0 to 19+km)" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}} />
+                <input className="e-input" min="0" type='number' pattern="[0-9]*" value={vis} onChange={(event) => setVis(event.target.value)} placeholder="Enter Visibility(0 to 19+km)" style={{fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',fontSize:'1%vw',width:'100%'}} />
                 </div>
             </div>
         <div style={{display:'flex',flexDirection:'column'}}>
