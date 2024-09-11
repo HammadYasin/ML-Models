@@ -1,4 +1,10 @@
 from flask import Flask, request, jsonify
+import flask
+import tensorflow as tf
+from PIL import Image
+import numpy as np
+import io
+import base64
 
 app = Flask(__name__)
 
@@ -104,6 +110,37 @@ def weather():
     else:
         result = "Unknown weather type"
     return result
+
+@app.route('/tumor', methods=['POST'])
+def predict():
+    global items
+    def preprocess_image(image):
+        image = image.resize((150, 150))
+        if image.mode != 'RGB':
+            image = image.convert('RGB')
+        image = np.array(image)
+        image = image / 255.0
+        image = np.expand_dims(image, axis=0)
+        return image
+    try:
+        data = flask.request.json
+        encoded_image = data['image']
+        decoded_image = base64.b64decode(encoded_image)
+        image = Image.open(io.BytesIO(decoded_image))
+        image = preprocess_image(image)
+        model = tf.keras.models.load_model(r'Tumor.h5')
+        predictions = model.predict(image)
+        predicted_class_index = np.argmax(predictions, axis=1)[0]
+        class_names = ['glioma', 'meningioma', 'notumor', 'pituitary']
+        predicted_class = class_names[predicted_class_index]
+        probability = predictions[0][predicted_class_index] * 100
+        response = {
+            'prediction': predicted_class,
+            'confidence': f'{probability:.2f} %'
+        }
+        return flask.jsonify(response)
+    except Exception as e:
+        return flask.jsonify({'error': str(e)})
 
 if __name__ == '__main__':
     app.run(debug=True)
