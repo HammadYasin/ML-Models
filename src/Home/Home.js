@@ -27,6 +27,9 @@ function Home(){
     const navigateweather= () => {
       navigate('/weather',{replace:true});
     };
+    const navigateTumor= () => {
+      navigate('/tumor',{replace:true});
+    };
       const defaultOptions = {
           loop: true,
           autoplay: true,
@@ -91,6 +94,7 @@ function Home(){
                     <text style={text}>X-Ray Pneumonia Detection</text>
                     <text style={text}>Potato Plan Disease</text>
                     <text style={text}>Garbage Bins Cleanliness</text>
+                    <text onClick={navigateTumor} style={{color:'blue',fontWeight:'bold',marginTop:5,cursor:'pointer'}}>Brain Tumor Detection</text>
                   </div>
                 </div>
               </div>

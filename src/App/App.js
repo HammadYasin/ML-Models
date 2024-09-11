@@ -3,6 +3,7 @@ import React, { useEffect,useState } from "react";
 import Heart from '../heart/heart';
 import Diabetes from '../diabetes/diabetes'
 import Weather from '../weather/weather'
+import Tumor from '../tumor/tumor'
 import Home from '../Home/Home'
 import Login from '../login/login'
 import Lottie from 'react-lottie';
@@ -26,6 +27,7 @@ export default function App() {
               <Route exact path="/heart" element={<Heart />} />
               <Route exact path="/diabetes" element={<Diabetes />} />
               <Route exact path="/weather" element={<Weather />} />
+              <Route exact path="/tumor" element={<Tumor />} />
             </Routes>
   );
 }

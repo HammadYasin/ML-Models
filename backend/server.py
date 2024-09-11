@@ -131,7 +131,7 @@ def predict():
         model = tf.keras.models.load_model(r'Tumor.h5')
         predictions = model.predict(image)
         predicted_class_index = np.argmax(predictions, axis=1)[0]
-        class_names = ['glioma', 'meningioma', 'notumor', 'pituitary']
+        class_names = ['Glioma', 'Meningioma', 'No Tumor', 'Pituitary']
         predicted_class = class_names[predicted_class_index]
         probability = predictions[0][predicted_class_index] * 100
         response = {

@@ -166,16 +166,6 @@ function weather()
         
     }, []);  
     console.log(data)
-    console.log('Temperature:', temp);
-    console.log('Humidity:', humi);
-    console.log('Wind Speed:', winds);
-    console.log('Precipitation:', preci);
-    console.log('Cloud Cover:', clou);
-    console.log('Atmospheric Pressure:', atmos);
-    console.log('UV Index:', uv);
-    console.log('Season:', sea);
-    console.log('Visibility:', vis);
-    console.log('Location:', loc);
     const myStyle={
         backgroundImage: `url(${background})`,
         height:'auto',
