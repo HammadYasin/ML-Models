@@ -1,12 +1,10 @@
 .App {
-  text-align: center;    display: flex;
+  text-align: center;
+  display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: space-between;
   min-height: 100vh;
   background-color: #f0f0f0;
-  /* padding: 20px; */
-
 }
 .overlay {
   position: fixed;
@@ -73,11 +71,10 @@ button {
 }
 .container {
   display: flex;
-  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  flex-wrap: wrap;
   justify-content: space-between;
-  max-height: 100%; /* Add space between components */
+  max-height: 100%;
 }
-/* Responsive styles */
 @media (max-width: 768px) {
   .container {
     max-width: 90%;
@@ -86,22 +83,17 @@ button {
 }
 
 .component {
-  flex-basis: calc(33.33% - 20px); /* Each component takes one-third of the available space minus spacing */
+  flex-basis: calc(33.33% - 20px);
   padding: 20px;
-  /* border: 1px solid #ccc; */
   box-sizing: border-box;
-  margin-bottom: 10px; /* Add some spacing between rows */
+  margin-bottom: 10px;
 }
 .animation-container {
-  width: 100%; /* Set the width to 100% to span the available width */
-  max-width: 400px; /* Adjust the maximum width as needed */
-  margin: 0 auto; /* Center the animation container horizontally */
-
-  /* Maintain aspect ratio */
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio (height / width) */
-
-  /* Add any other styling you need */
+  padding-bottom: 56.25%;
 }
 
 .lottie-animation {

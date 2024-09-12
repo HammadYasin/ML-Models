@@ -57,6 +57,7 @@ def weather():
     data['Atmospheric Pressure'] = pd.to_numeric(data['Atmospheric Pressure'], errors='coerce')
     data['UV Index'] = pd.to_numeric(data['UV Index'], errors='coerce')
     data['Visibility (km)'] = pd.to_numeric(data['Visibility (km)'], errors='coerce')
+    
     ################################## Feature Engineering##########################
     def celsius_to_fahrenheit(celsius):
         return (celsius * 9/5) + 32
