@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import flask
 import tensorflow as tf
+from keras.utils import img_to_array
 from PIL import Image
 import numpy as np
 import io
@@ -113,7 +114,7 @@ def weather():
     return result
 
 @app.route('/tumor', methods=['POST'])
-def predict():
+def tumor():
     global items
     def preprocess_image(image):
         image = image.resize((150, 150))
@@ -142,6 +143,87 @@ def predict():
         return flask.jsonify(response)
     except Exception as e:
         return flask.jsonify({'error': str(e)})
+    
+@app.route('/skin', methods=['POST'])
+def skin():
+    model = tf.keras.models.load_model('skin.h5')
+    CLASS_NAMES = ["Benign", "Malignant"]
+    target_size = (224, 224)
+    def image_to_num(image, target_size):
+        img_resized = image.resize(target_size)
+        return img_to_array(img_resized)
+    def decode_base64_image(base64_str):
+        image_data = base64.b64decode(base64_str)
+        image = Image.open(io.BytesIO(image_data))
+        return image
+    try:
+        data = request.get_json()
+        base64_str = data['image']
+        image = decode_base64_image(base64_str)
+        img_array = image_to_num(image, target_size)
+        img_array = np.expand_dims(img_array, axis=0)
+        prediction = model.predict(img_array)
+        result = CLASS_NAMES[np.where(prediction[0][0] >= 0.59, 1, 0)]
+        confidence = (prediction[0][0] if result == "malignant" else 1 - prediction[0][0]) * 100
+        return jsonify({
+            "predicted_class": result,
+            "confidence": f"{confidence:.2f}%"
+        })
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+@app.route('/lung', methods=['POST'])
+def lung():
+    target_size = (128, 128)
+    CLASS_NAMES = ["NORMAL", "PNEUMONIA"]
+    model = tf.keras.models.load_model('lung.h5')
+    data = request.json
+    base64_image = data.get("image")
+    def prepare_image(base64_str):
+        image_data = base64.b64decode(base64_str)
+        image = Image.open(io.BytesIO(image_data))
+        if image.mode != 'RGB':
+            image = image.convert('RGB')
+        image = image.resize(target_size)
+        x = img_to_array(image)
+        x = np.expand_dims(x, 0)
+        return x
+    if base64_image is None:
+        return jsonify({"error": "No image provided"}), 400
+    try:
+        image_array = prepare_image(base64_image)
+        prediction = model.predict(image_array)
+        result = CLASS_NAMES[np.where(prediction[0][0] >= 0.75, 1, 0)]
+        return jsonify({"prediction": result}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+@app.route('/alzheimer', methods=['POST'])
+def alzheimer():
+    try:
+        model = tf.keras.models.load_model(r'alzheimer.h5')
+        class_names = ['NonDemented', 'VeryMildDemented', 'MildDemented', 'ModerateDemented']
+        data = request.json['image']
+        image_data = base64.b64decode(data)
+        image = Image.open(io.BytesIO(image_data))
+        image = image.resize((224, 224))
+        if image.mode != 'RGB':
+            image = image.convert('RGB')
+        image = np.array(image)
+        image = image / 255.0
+        image = np.expand_dims(image, axis=0)
+        predictions = model.predict(image)
+        predicted_class_index = np.argmax(predictions, axis=1)[0]
+        predicted_class = class_names[predicted_class_index]
+        probability = predictions[0][predicted_class_index] * 100
+        result = {
+            "predicted_class": predicted_class,
+            "confidence": round(probability, 2)
+        }
+        return jsonify(result)
+
+    except Exception as e:
+        return jsonify({"error": str(e)})
 
 if __name__ == '__main__':
     app.run(debug=True)
