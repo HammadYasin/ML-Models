@@ -113,6 +113,19 @@ def weather():
         result = "Unknown weather type"
     return result
 
+@app.route('/cholesterol', methods=['POST'])
+def cholesterol():
+    
+    request_data = request.json
+    import pickle
+    import pandas as pd
+    filename = 'cholesterol.sav'
+    model = pickle.load(open(filename, 'rb'))
+    data = pd.DataFrame([request_data])
+    output = model.predict(data)
+    value = output.item()
+    return jsonify(value)  
+
 @app.route('/tumor', methods=['POST'])
 def tumor():
     global items
